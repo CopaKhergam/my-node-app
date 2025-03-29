@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Form</title>
+  <style>
+    #register-form {
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .gender-group label {
+      margin-right: 15px;
+    }
+
+    .input-field[type="radio"] {
+      margin-right: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="register-form" style="display: block;">
+  <h2>Register</h2>
+  <form id="tregister" action="http://localhost:3000/trainee" method="POST">
+
+    <!-- Personal Details Section -->
+    <div class="section-title">Personal Details</div>
+    <input type="text" class="input-field" name="first_name" placeholder="First Name" required>
+    <input type="text" class="input-field" name="last_name" placeholder="Last Name" required>
+    <input type="tel" class="input-field" name="enrollment_number" placeholder="Enrollment Number" required>
+    <input type="tel" class="input-field" name="mobile_number" placeholder="Mobile Number" required>
+
+    <div class="gender-group">
+      <label>
+        <input type="radio" name="gender" value="Male" required> Male
+      </label>
+      <label>
+        <input type="radio" name="gender" value="Female" required> Female
+      </label>
+      <label>
+        <input type="radio" name="gender" value="Other" required> Other
+      </label>
+    </div>
+
+    <input type="date" class="input-field" name="date_of_birth" placeholder="Date of Birth" required>
+    
+    <select id="itiTrade" name="trade" class="input-field">
+      <option value="disabled selected">Select Trade</option>
+      <option value="electrician">Electrician</option>
+      <option value="fitter">Fitter</option>
+      <option value="welder">Welder</option>
+      <option value="plumber">Plumber</option>
+      <option value="copa">Computer Operator and Programming Assistant (COPA)</option>
+      <option value="wireman">Wireman</option>
+    </select>
+
+    <!-- Address Details Section -->
+    <div class="section-title">Address Details</div>
+    
+    <!-- DISTRICT Dropdown -->
+    <select name="district" id="district" class="input-field" required>
+      <option value="" disabled selected>Select District</option>
+      <option value="Ahmedabad">Ahmedabad</option>
+      <option value="Amreli">Amreli</option>
+      <option value="Anand">Anand</option>
+      <!-- Add other districts here -->
+    </select>
+
+    <!-- TALUKA Dropdown -->
+    <select name="taluka" id="taluka" class="input-field" required>
+      <option value="" disabled selected>Select Taluka</option>
+    </select>
+
+    <!-- VILLAGE Dropdown -->
+    <select name="village" id="village" class="input-field" required>
+      <option value="" disabled selected>Select Village</option>
+    </select>
+
+    <input type="text" class="input-field" name="street_address" placeholder="Street Address" required>
+    <input type="text" class="input-field" name="pin_code" placeholder="Pin Code" required>
+
+    <input type="password" class="input-field" name="password" placeholder="Password" required>
+    <input type="password" class="input-field" name="confirm_password" placeholder="Confirm Password" required>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

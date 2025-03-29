@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Footer</title>
+  <link rel="stylesheet" href="styles.css">
+<style>
+/* Basic page setup */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.content {
+  padding: 50px;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slideUp 1s ease-out forwards;
+}
+
+/* Animation */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer content layout */
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Logo hover effect */
+.footer-logo:hover {
+  transform: rotate(360deg);
+}
+
+/* Footer text styling */
+footer p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Hover effect for the entire footer */
+footer:hover {
+  background-color: #444;
+  transform: scale(1.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+</style>
+</head>
+<body>
+  <div class="content">
+    <!-- Your main content here -->
+    <h1>Welcome to My Website</h1>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2025 My Website. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

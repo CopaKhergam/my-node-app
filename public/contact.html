@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Your Electrician Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+		<li style="float:right;"><div class="dropdown" >
+  			<button class="dropbtn">Login/Registration</button>
+  			<div class="dropdown-content">
+  				<a href="loginregistraionfortrainee.html">Trainee</a>
+ 				 <a href="loginregistraionforcustomer.html">Customer</a>
+ 				 
+  			</div>
+			</div>       </li>    
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Form -->
+    <section class="contact">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or would like to request a service, please fill out the form below, and we’ll get back to you shortly.</p>
+
+        <form id="userForm" method="POST" action="http://localhost:3000/insert">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+           <button type="button" id="submitButton" onclick="submitForm()">Submit</button>
+
+        </form>
+    </section>
+
+<!-- Address and Map Section -->
+    <section class="map-and-address">
+        <h2>Our Location</h2>
+        <p><strong>ITI Khergam</strong></p>
+        <p>Near Khergam Main Road, Khergam, Gujarat, India</p>
+        <p>Phone: +91-XXXXXXXXXX</p>
+        <p>Email: <a href="mailto:info@itikhergam.com">info@itikhergam.com</a></p>
+
+        <div class="contact-map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.714262769208!2d73.10035307494148!3d20.640500501001195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be09544ddd02595%3A0xfc46acf433c0a3c4!2sIndustrial%20Training%20Instutute%20-%20Khergam!5e0!3m2!1sen!2sin!4v1743150634895!5m2!1sen!2sin"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+<script>
+        function submitForm() {
+            // Manually trigger form submission
+            document.getElementById("userForm").submit();	
+        }
+
+
+
+
+    </script>
+
+    <!-- Footer -->
+    <footer>
+		<div class="footer-logo-marquee">
+   	 	<img src="photo\images.png" alt="Logo" class="footer-logo">
+ 		 </div>
+        <p>&copy; 2025 Trainee Skill-Hub</p>
+    </footer>
+
+
+
+</body>
+</html>

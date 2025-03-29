@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+	    background-image: url('photo/2222.jpg');
+	background-size: cover;
+	background-repeat: no-repeat; 
+	background-position: center center;
+	height: 100vh;
+	margin: 0; 
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+      	   max-height: 150vh;
+           
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-height: 80vh; /* Limits form height to 80% of the viewport height */
+    overflow-y: auto; /* Enables vertical scrolling if content overflows */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0c38a8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .tab.active {
+            background-color: #0c38a8;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <div class="tabs">
+            <div class="tab active" id="login-tab" onclick="showLogin()">Login</div>
+            <div class="tab" id="register-tab" onclick="showRegister()">Register</div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form">
+            <h2>Login</h2>
+            <form id ="tlogin" action="http://localhost:3000/traineelogin" method="POST">
+                <input type="text" class="input-field" name="mobile_number" placeholder="Mobile Number" required>
+                <input type="password" class="input-field" name="password" placeholder="Password" required>
+                <button type="submit" class="button" onclick="tlogin_Form()">Login</button>
+            </form>
+            <div class="form-footer">
+                <p>Don't have an account? <a href="javascript:void(0)" onclick="showRegister()">Register</a></p>
+		<p> <a href="index.html">Home Page</a></p>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" style="display: none;">
+            <h2>Register</h2>
+		<form id="tregister" action="http://localhost:3000/trainee" method="POST">
+
+            <!-- Personal Details Section -->
+            <div class="section-title">Personal Details
+            <input type="text" class="input-field" name="first_name" placeholder="First Name" required>
+            <input type="text" class="input-field" name="last_name" placeholder="Last Name" required>
+           <input type="tel" class="input-field" name="enrollment_number" placeholder="Enrollment Number" required>
+            <input type="tel" class="input-field" name="mobile_number" placeholder="Mobile Number" required> </div>
+	<div class="gender-group">
+                <label>
+                    <input type="radio" name="gender" value="Male" required> Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Female" required> Female
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Other" required> Other
+                </label>
+
+            </div>
+            <input type="date" class="input-field" name="date_of_birth" placeholder="Date of Birth" required>
+            <select id="itiTrade" name="trade" class="input-field" >
+		<option value="disabled selected">Select Trade</option>
+        	<option value="electrician">Electrician</option>
+        	<option value="fitter">Fitter</option>
+        	<option value="welder">Welder</option>
+        	<option value="plumber">Plumber</option>
+         	<option value="copa">Computer Operator and Programming Assistant (COPA)</option>
+        	<option value="wireman">Wireman</option>
+   	 </select>
+		 
+
+            <!-- Address Details Section -->
+            <div class="section-title">Address Details</div>
+            
+           
+            <!-- DISTRICT Dropdown -->
+            <select name="district" id="district" name ="district"class="input-field" onchange="updateTaluka()"required>
+                <option value="" disabled selected>Select District</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Amreli">Amreli</option>
+                <option value="Anand">Anand</option>
+                <option value="Aravalli">Aravalli</option>
+                <option value="Banaskantha">Banaskantha</option>
+                <option value="Bharuch">Bharuch</option>
+                <option value="Bhavnagar">Bhavnagar</option>
+                <option value="Botad">Botad</option>
+                <option value="Chhota Udepur">Chhota Udepur</option>
+                <option value="Dahod">Dahod</option>
+                <option value="Dang">Dang</option>
+                <option value="Gir Somnath">Gir Somnath</option>
+                <option value="Jamnagar">Jamnagar</option>
+                <option value="Junagadh">Junagadh</option>
+                <option value="Kutch">Kutch</option>
+                <option value="Kheda">Kheda</option>
+                <option value="Mahisagar">Mahisagar</option>
+                <option value="Mehsana">Mehsana</option>
+                <option value="Morbi">Morbi</option>
+                <option value="Narmada">Narmada</option>
+                <option value="Navsari">Navsari</option>
+                <option value="Panchmahal">Panchmahal</option>
+                <option value="Patan">Patan</option>
+                <option value="Porbandar">Porbandar</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Sabarkantha">Sabarkantha</option>
+                <option value="Surat">Surat</option>
+                <option value="Surendranagar">Surendranagar</option>
+                <option value="Tapi">Tapi</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Valsad">Valsad</option>
+            </select>
+
+            <!-- TALUKA Dropdown -->
+           
+            <select name="taluka" id="taluka" name="taluka"class="input-field"  onchange="updateVillage()" required>
+                <option value="" disabled selected>Select Taluka</option>
+            </select>
+
+	<!-- VILLAGE Dropdown -->
+	<select name="village" id="village" name="village" class="input-field" required>
+                <option value="" disabled selected>Select Village</option>
+            </select>
+
+ 
+	<input type="text" class="input-field" name="street_address" placeholder="Street Address" required>
+ 	<input type="text" class="input-field" name="pin_code" placeholder="Pin Code" required>
+
+ 	<input type="password" class="input-field" name="password" placeholder="Password" required>
+                <input type="password" class="input-field" name="confirm_password" placeholder="Confirm Password" required>
+
+            <!-- Submit Button -->
+            <button type="submit" class="button">Register</button>
+        </form>
+
+
+            
+            <div class="form-footer">
+                <p>Already have an account? <a href="javascript:void(0)" onclick="showLogin()">Login</a></p>
+		<p> <a href="index.html">Home Page</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showLogin() {
+        document.getElementById("login-form").style.display = "block";
+        document.getElementById("register-form").style.display = "none";
+        document.getElementById("login-tab").classList.add("active");
+        document.getElementById("register-tab").classList.remove("active");
+    }
+
+    function showRegister() {
+        document.getElementById("register-form").style.display = "block";
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-tab").classList.add("active");
+        document.getElementById("login-tab").classList.remove("active");
+    }
+
+function updateTaluka() {
+        const district = document.getElementById("district").value;
+        const talukaDropdown = document.getElementById("taluka");
+	const villageDropdown = document.getElementById("village");
+        // Clear previous Taluka options
+        talukaDropdown.innerHTML = '<option value="" disabled selected>Select Taluka</option>';
+	villageDropdown.innerHTML = '<option value="" disabled selected>Select Village</option>';
+        let talukas = [];
+
+        // Define talukas for each district
+        if (district === "Ahmedabad") {
+            talukas = ["Ahmedabad City", "Sanand", "Dholka", "Viramgam", "Bavla"];
+        } else if (district === "Surat") {
+            talukas = ["Surat City", "Olpad", "Kamrej", "Ichchhpur", "Mahuva"];
+        } else if (district === "Rajkot") {
+            talukas = ["Rajkot City", "Jamnagar", "Bhavnagar", "Gondal", "Paddhari"];
+        } else if (district === "Vadodara") {
+            talukas = ["Vadodara City", "Karjan", "Padra", "Savli", "Kavant"];
+        } else if (district === "Navsari") {
+            talukas = ["Navsari", "Gandevi", "Chikhli", "Jalalpore","Khergam","Vansda"];
+        } else if (district === "Valsad") {
+            talukas = ["Valsad", "Pardi", "Dharampur","Umargam","Kaprada"];
+        }
+
+        // Populate Taluka dropdown based on the selected district
+        talukas.forEach(function(taluka) {
+            const option = document.createElement("option");
+            option.value = taluka;
+            option.textContent = taluka;
+            talukaDropdown.appendChild(option);
+        });
+    }
+
+// Function to update Village options based on selected Taluka
+    function updateVillage() {
+        const taluka = document.getElementById("taluka").value;
+        const villageDropdown = document.getElementById("village");
+
+        // Clear previous Village options
+        villageDropdown.innerHTML = '<option value="" disabled selected>Select Village</option>';
+
+        let villages = [];
+
+        // Define villages for each taluka
+        if (taluka === "Navsari") {
+            villages = ["Adada", "Amadpor", "Ambada", "Amri", "Ashtagam", "Asundar", "Bhattai", "Bhula Faliya", "Bhunwadi", "Boriach", "Butlav", "Chandravasan Supa", "Chhapra (Part)", "Dabhalai", "Dandesar", "Dantej", "Dhaman", "Dharagiri", "Italva", "Kachhol", "Kadipor", "Kambada", "Kanbad", "Kasbapar", "Khadsupa", "Khergam", "Kumbhar Faliya", "Kurel", "Mahudi", "Mogar", "Moldhara", "Munsad", "Nagdhara", "Nasilpor", "Navapara", "Navsari", "Onchi", "Padgha", "Pardi", "Partapor", "Parthan", "Pera", "Pinsad", "Puni", "Rajwada", "Sadlav", "Sarai", "Sarona", "Sarpor", "Satem", "Shahu", "Singod", "Sisodra (Ganesh)", "Supa", "Tarsadi", "Telada", "Tighra", "Toli", "Ugat", "Un", "Vachharvad", "Vasar", "Vejalpor", "Viraval", "Virwadi", "Wada (Sisodra)"];
+        } else if (taluka === "Gandevi") {
+            villages = ["Ajrai", "Amalsad", "Ambheta", "Ancheli", "Bhatha", "Bigri", "Bilimora", "Chhapar", "Deshad", "Devdha", "Dhakwada", "Dhamdachha", "Dhanori", "Duwada", "Endhal", "Gadat", "Gandeva", "Gandevi", "Ganghor", "Govandi Bhathala", "Ichhapor", "Kachholi", "Kalamtha", "Kalvach", "Kesali", "Khakhwada", "Khapariya", "Khaparwada", "Khergam", "Kolva", "Kotha", "Manekpor", "Masa", "Matwad", "Mendhar", "Mohanpur", "Morali", "Nandarkha", "Pathri", "Pati", "Pinjra", "Pipaldhara", "Rahej", "Salej", "Saribujrang", "Sarikhurd", "Sonwadi", "Torangam", "Undach Luhar Faliya", "Undach Vaniya Faliya", "Vadsangal", "Vagalvad", "Vaghrech", "Valoti", "Vangam", "Vasan", "Vegam"];
+        } else if (taluka === "Chikhli") {
+            villages = ["Achhavani", "Agasi", "Alipor", "Amadhara", "Ambach", "Bahej", "Balwada", "Bamanvel", "Bamanwada", "Barolia", "Bhervi", "Bodvank", "Chari", "Chasa", "Chikhli (CT)", "Chimanpada", "Chitali", "Debarpada", "Degam", "Dhama Dhuma", "Dholumber", "Donja", "Fadvel", "Gauri", "Ghej", "Gundal", "Jambhora", "Jambhurdada", "Jambhupada", "Kachhol", "Kadipor", "Kambada", "Kanbad", "Kasbapar", "Khadsupa", "Khergam", "Kumbhar Faliya", "Kurel", "Maliadhara", "Malwada", "Mandav Khadak", "Manekpor", "Minkachchh", "Mograwadi", "Nadagdhari", "Nandhai", "Naranpor", "Nogama", "Pananj", "Panikhadak", "Pati", "Peladi Bhervi", "Pipalgabhan", "Rankuwa", "Ranverikalla", "Ranverikhurd", "Rethvania", "Rumla", "Ruzvani", "Sadadvel", "Sadakpor", "Samaroli", "Saraiya", "Saravani", "Soldhara", "Sunthwad", "Surkhai", "Syada", "Talavchora", "Tankal", "Tejlav", "Thala", "Toranvera", "Undhwal"];
+        } else if (taluka === "Jalalpore") {
+            villages = ["Abrama", "Alak", "Alura", "Arsan", "Asana", "At", "Bhatha", "Bhinar", "Bhutsad", "Bodali", "Borsi", "Chhinam", "Chijgam", "Chokhad", "Dabhel", "Dalki", "Dambher", "Dandi", "Danti", "Delvada", "Dipla", "Eroo", "Ethan", "Hansapor", "Jalalpore", "Kadoli", "Kalakachha", "Kalthan", "Kanera", "Karadi", "Karankhat", "Karod Kothva", "Khambhlav", "Kharsad", "Kolasana", "Kothamadi", "Krushnapur", "Kuched", "Machhad", "Magob", "Mandir", "Manekpor", "Mangrol", "Maroli", "Matwad", "Mirjapor", "Nadod", "Nimlai", "Onjal", "Panar", "Pardi (Alak)", "Parsoli", "Parujan", "Pethan", "Ponsara", "Ranodra", "Sadodra", "Sagra", "Samapor", "Sandalpor", "Sarav", "Simalgam", "Simlak", "Sisodra (Alak)", "Sultanpur", "Tankoli", "Tavdi", "Umbhrat", "Vadoli", "Vansi", "Vedchha", "Vesma", "Wada"];
+	}else if (taluka === "Vansda") {
+            villages = ["Ambabari", "Ambapani", "Anklachh", "Bansda", "Bartad (Khanpur)", "Bartad (Unai)", "Bedmal", "Bhinar", "Bilmoda", "Boriachh", "Chadhav", "Chapaldhara", "Charanwada", "Chikatiya", "Chondha", "Chorvani", "Dhakmal", "Dharampuri", "Dholumber", "Doldha", "Dubal Faliya", "Gangpur", "Ghodmal", "Godhabari", "Hanumanbari", "Holipada", "Jamaliya", "Kala Amba", "Kamal Zari", "Kamboya", "Kanadha", "Kandolpada", "Kansariya", "Kantasvel", "Kapadvanj", "Kavdej", "Kelia", "Kelkutch", "Kevdi", "Khadakiya", "Khambhala", "Khambhaliya", "Khanpur", "Kharjai", "Khata Amba", "Kukda", "Kureliya", "Lachhakadi", "Lakadbari", "Lakhawadi", "Limbarpada", "Limzar", "Mahuvas", "Mankunia", "Manpur", "Mindhabari", "Mola Amba", "Moti Bhamti", "Moti Valzar", "Nani Bhamti", "Nani Valzar", "Navanagar", "Navtad", "Nirpan", "Palgabhan", "Pipalkhed", "Pratapnagar", "Rajpur", "Rangpur", "Ranifaliya", "Ravaniya", "Raybor", "Rupvel", "Sadad Devi", "Sara", "Satimal", "Sindhai", "Singadh", "Sitapur", "Sukhabari", "Tadpada", "Umarkui", "Unai", "Upsal", "Vadichondha", "Vaghabari", "Vaghai", "Vanarasi", "Vandarvela", "Vangan", "Vanskui", "Vasiya Talav", "Vati", "Zari", "Zuj"];
+} else if (taluka === "Khergam") {
+            villages = ["Achhavani", "Bahej", "Bhervi", "Chimanpada", "Debarpada", "Dhama Dhuma", "Gauri", "Jamanpada", "Kakadveri", "Khergam", "Nadagdhari", "Nandhai", "Naranpor", "Pananj", "Panikhadak","Pati", "Peladi Bhervi", "Ruzvani", "Toranvera", "Vad", "Vadpada", "Vav"];
+        } else if (taluka === "Valsad") {
+            villages = ["Atul", "Abrama", "Anjlav", "Atak Pardi", "Atar", "Atgam", "Bhadeli Desai Party", "Bhadeli Jagalala", "Bhagal", "Bhagod", "Bhanji Falia", "Bhoma Pardi", "Bhutsar", "Binwada", "Bodlai", "Chanvai", "Chharvada", "Chichwada", "Chikhla", "Chinchai", "Dandi", "Dhamdachi", "Dhanori", "Dharasna", "Dived", "Dulsad", "Dungri", "Endergota", "Faldhara", "Fanaswada", "Gadaria", "Ghadoi", "Gorgam", "Gorwada", "Gundlav", "Hariya", "Jeshpor", "Jujwa", "Kachigam", "Kakadmati", "Kakwadi Danti", "Kalwada", "Kanjan Hari", "Kanjan Ranchhod", "Kaparia", "Kewada", "Khajurdi", "Kochwada", "Kosamkuwa", "Kundi", "Lilapore", "Magod", "Magod Dungri", "Malvan", "Marala", "Meh", "Mogarwadi", "Muli", "Nanakwada", "Nandawala", "Navera", "Olgam", "Ovada", "Ozar", "Palan", "Panchlai", "Pardi Hariya", "Pardi Parnera", "Parnera", "Pathri", "Pitha", "Rabada", "Rola", "Ronvel", "Sarangpur", "Sarodhi", "Saron", "Segva", "Segvi", "Shanker Talav", "Sonwada", "Surwada", "Thakkarwada", "Tighara", "Tithal", "Umarsadi", "Untdi", "Vaghaldhara", "Valandi", "Valsad", "Vankal", "Vasan", "Vashiyar", "Vejalpore", "Velvach"];
+        } else if (taluka === "Kaprada") {
+            villages = ["Amba Jungle", "Ambheti", "Amdha", "Andharpada", "Arnai", "Asalkanti", "Aslona", "Astol", "Babarkhadak", "Balchondhi", "Bamanvel", "Barpuda", "Bhandar Kutch", "Bhatheri", "Bhavada Jagiri (Forest)", "Bhurval", "Bilaniya", "Bilia", "Borpada", "Burla", "Burvad", "Chandvegan", "Chavshala", "Chepa", "Chichpada", "Dabhadi", "Dabkhal", "Dahikhed", "Dhaman Vegan", "Dharanmal", "Dhodhad kuva", "Dighi", "Divsi", "Dixal", "Eklera", "Fali", "Fatepur", "Ghadvi", "Ghanveri", "Ghotan", "Ghotval", "Girnara", "Hedalbari", "Huda", "Jam Gabhan", "Jirval", "Jogvel", "Kajli", "Kakadkopar", "Kaprada", "Karchond", "Karjun", "Kasatveri", "Keldha", "Ketki", "Khadakval", "Kharedi", "Khatuniya", "Khuntli", "Kistoniya", "Kolvera", "Kotalgam", "Kothar", "Kumbhset", "Kunda", "Lavkar", "Likhavad", "Madhuban", "Maghval", "Malghar", "Malungi", "Manala", "Mandva", "Mani", "Matuniya", "Mendha", "Mota Pondha", "Moti Palsan", "Moti Vahiyal", "Nagar", "Nali Madhani", "Nana Pondha", "Nandgam", "Nani Palsan", "Narvad", "Nilosi", "Nirval", "Ozar", "Ozarda", "Panas", "Panchvera", "Pendhardevi", "Pipalset", "Piproni", "Piproti", "Rahor", "Raymal", "Rohiyal Jungle", "Rohiyal Talat", "Sarvartanti", "Shahuda", "Sildha", "Singartati", "Sukalbari", "Sukhala", "Suliya", "Sutharpada", "Teri Chikhli", "Tiskari Jungle", "Titumal", "Tokarpada", "Tukvada", "Umarpada", "Umli", "Vaddha", "Vadi", "Vadkhambha", "Vadoli", "Vadset", "Vajvad", "Valveri", "Varna", "Varoli Jungle", "Varoli Talat", "Varvath", "Vavar", "Veri Bhavada", "Viraxet"];
+        } else if (taluka === "Pardi") {
+            villages = ["Ambach", "Amli", "Arnala", "Asma", "Bagwada", "Balda", "Balitha", "Barai", "Borlai", "Chala", "Chandor", "Chanod", "Chharwada", "Chhiri", "Chibhad Kachchh", "Chival", "Daheli", "Dashwada", "Degam", "Dhagadmal", "Dumalav", "Dungra", "Dungri", "Goima", "Kachwal", "Kalsar", "Karamkhal", "Karaya", "Karvad", "Kaval", "Khadki", "Kherlav", "Khuntej", "Kikarla", "Kocharva", "Kolak", "Koparli", "Kumbhariya", "Kunta", "Lakhmapor", "Lavachha", "Morai", "Mota Waghchhipa", "Moti Tambadi", "Motiwada", "Namdha", "Nana Waghchhipa", "Nani Tambadi", "Nevri", "Nimkhal", "Orvad", "Palsana", "Panchlai", "Pandor", "Pardi", "Paria", "Parvasa", "Pati", "Rabdi", "Rata", "Rentlav", "Rohina", "Salvav", "Samarpada", "Saran", "Sarodhi", "Sondhalwada", "Sonwada", "Sukhesh", "Sukhlav", "Tarakpardi", "Tarmaliya", "Tidhara", "Tukwada", "Udwada", "Umarsadi", "Vankachh", "Vapi", "Varai", "Vatar", "Velparva"];
+        } else if (taluka === "Dharampur") {
+            villages = ["Amba Talat", "Asura", "Avalkhandi", "Avdha", "Bamti", "Baroliya", "Barsol", "Barumal", "Bhambha", "Bhanval", "Bhavada (Talat)", "Bhavthan Ambosi", "Bhavthan Jungle", "Bhensdara", "Bhutrun", "Bildha", "Bilpudi", "Bokaddhara", "Bopi", "Chasmandva", "Chavra", "Chichozar", "Dandvel", "Dhamni", "Dhankval", "Dharampur", "Fulwadi", "Gadi", "Ganva", "Gorkhada", "Gundiya", "Hanmatmal", "Hathanbari", "Hedri", "Jagiri", "Jamaliya", "Kakadkuva", "Kangvi", "Karanjveri", "Kelavani", "Khadki", "Khamdahad", "Khanda", "Khapatiya", "Kharvel", "Khatana", "Khoba", "Kosimpada", "Kurgam", "Lakadmal", "Luheri", "Madhuri", "Mama Bhacha", "Manaichondi", "Mankadban", "Maraghmal", "Mohna Kavchali", "Mohpada", "Molveri", "Mordahad", "Moti Dhol Dungari", "Moti Korval", "Moti Kosbadi", "Murdad", "Nadagdhari Jungle", "Nani Dhol Dungari", "Nani Korval", "Nani Kosbadi", "Nani Vahiyal", "Paikhed", "Pandav Khadak", "Pangarbari", "Panva", "Pendha", "Pindval", "Pipalpada", "Piprol", "Piramal", "Pondha Jungle", "Rajpuri Jungle", "Rajpuri Talat", "Ranpada", "Ranveri", "Sadadvera", "Sajani Barada", "Samarsingi", "Santvankal", "Sidhumbar", "Singarmal", "Sisumal", "Sondar", "Tamachhadi", "Tanachhiya", "Tanki", "Tiskari Talat", "Titu Khadak", "Tumbi", "Tutarkhed", "Ukta", "Ulaspedhi", "Upalpada", "Vaghval", "Vanjhalat", "Vankhas", "Vansda Jungle", "Vathoda", "Virval", "Zariya"];
+        } else if (taluka === "Umargam") {
+            villages = ["Achchhari", "Ahu", "Angam", "Anklas", "Bhathi Karambeli", "Bhilad", "Boralai", "Borigam", "Dahad", "Daheli", "Dehari", "Dhanoli", "Eklahare", "Fansa", "Ghimsa Kankariya", "Govada", "Humran", "Jamburi", "Kachigam", "Kalai", "Kalgam", "Karambele", "Karanj", "Khattalwada", "Malav", "Mamakwada", "Manda", "Manekpur", "Maroli", "Mohan", "Nagwas", "Nahuli", "Nandigam", "Nargol", "Palgam", "Pali", "Pali Karambeli", "Punat", "Sanjan", "Sarai", "Sarigam", "Seronda", "Solsumba", "Tadgam", "Talwada", "Tembhi", "Tumb", "Umbergaon", "Valwada", "Vankas", "Zaroli"];
+        } else if (taluka === "Sanand") {
+            villages = ["Sanand Village 1", "Sanand Village 2"];
+        }
+
+        // Populate Village dropdown based on the selected taluka
+        villages.forEach(function(village) {
+            const option = document.createElement("option");
+            option.value = village;
+            option.textContent = village;
+            villageDropdown.appendChild(option);
+        });
+    }
+
+function tregister_Form() {
+            // Manually trigger form submission
+            document.getElementById("tregister").submit();	
+        }
+
+function tlogin_Form() {
+            // Manually trigger form submission
+            document.getElementById("tlogin").submit();	
+        }
+
+// Handle form submission
+    document.getElementById('tregister').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      fetch('/trainee', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data) // Send data as JSON
+      })
+      .then(response => response.text())  // Read the response as text
+      .then(message => {
+        alert(message);  // Show the success message in an alert box
+     window.location.href = '/loginregistraionfortrainee.html'; // Redirect to home page
+
+      })
+      .catch(error => {
+        alert('An error occurred: ' + error.message);
+      });
+    });
+
+
+
+</script>
+
+</body>
+</html>

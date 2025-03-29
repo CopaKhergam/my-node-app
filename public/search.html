@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Businesses</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        input {
+            padding: 8px;
+            font-size: 1rem;
+            width: 250px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Businesses by Trade Name or Taluka</h1>
+
+    <!-- Search Fields -->
+    <input type="text" id="tradeNameInput" placeholder="Enter Trade Name" onkeyup="searchData()">
+    <input type="text" id="talukaInput" placeholder="Enter Taluka" onkeyup="searchData()">
+
+    <!-- Table to display businesses -->
+    <table id="businessTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Trade Name</th>
+                <th>Taluka</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to search data and update the table
+        function searchData() {
+            const tradeName = document.getElementById('tradeNameInput').value;
+            const taluka = document.getElementById('talukaInput').value;
+
+            // Create a new XMLHttpRequest object to send data to the server
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `http://localhost:3000/api/trainee?trade_name=${tradeName}&taluka=${taluka}`, true);
+
+            // Define what happens when the request is complete
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const businesses = JSON.parse(xhr.responseText);
+                    updateTable(businesses);
+                }
+            };
+
+            // Send the request to the server
+            xhr.send();
+        }
+
+        // Function to update the table with business data
+        function updateTable(trainee) {
+            const tableBody = document.querySelector('#businessTable tbody');
+            tableBody.innerHTML = ''; // Clear any existing rows
+
+            businesses.forEach(business => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${trainee.id}</td>
+                    <td>${trainee.trade}</td>
+                    <td>${trainee.taluka}</td>
+                    <td>${trainee.village}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Fetch and display all businesses when the page loads
+        window.onload = function () {
+            searchData(); // Initial call to load all businesses
+        };
+    </script>
+
+</body>
+</html>

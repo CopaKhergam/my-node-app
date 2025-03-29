@@ -1,0 +1,267 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    padding: 1rem;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+header nav1 ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: right;
+}
+header nav1 ul li {
+    margin: 0 20px;
+}
+header nav1 ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.dropbtn {
+  background-color:#333;
+  
+  padding: 3px;
+  
+  border: none;
+  cursor: pointer;
+  color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+ right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #333;
+color:white;
+}
+
+.hero {
+    background-color: #0c38a8;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 20px;
+}
+
+.hero .cta-button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+/* Container for two parts */
+.container {
+    display: flex; /* Enables Flexbox layout */
+    justify-content: space-between; /* Space between the two sections */
+    padding: 1px;
+    gap: 10px; /* Adds space between the two sections */
+}
+
+/* Image section styles */
+.images {
+    flex: 1; /* Takes up 50% of the container width */
+    padding: 20px;
+    text-align: center; /* Center the content */
+}
+
+.images img {
+    max-width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains aspect ratio */
+}
+
+/* About section styles */
+.about {
+    flex: 1; /* Takes up the other 50% of the container width */
+    padding: 20px;
+    background-color: #f4f4f4; /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.about h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.about p {
+    font-size: 1em;
+    line-height: 1.6;
+    text-align:justify;
+}
+
+
+
+.services ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.services ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.contact form button {
+    padding: 10px 20px;
+    background-color: #0c38a8;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+footer {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+  position:fixed;
+ width:100%;
+bottom:0;
+}
+
+.footer-logo {
+  height: 100px; /* Adjust according to your logo size */
+}
+
+.footer-logo-marquee {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.footer-logo-marquee img {
+  animation: scrollLogo 15s linear infinite;
+}
+
+@keyframes scrollLogo {
+  0% {
+    transform: translateX(500%);
+  }
+  100% {
+    transform: translateX(-500%);
+  }
+}
+
+/* Contact Section Styles */
+.contact {
+    margin: 20px;
+}
+
+.contact h1 {
+    text-align: center;
+    color: #333;
+}
+
+.contact p {
+    text-align: center;
+    color: #666;
+}
+
+/* Map and Address Styles */
+.map-and-address {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.map-and-address h2 {
+    color: #007BFF;
+    font-size: 24px;
+}
+
+.map-and-address p {
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-map iframe {
+    border: none;
+    width: 100%;
+    height: 450px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .contact-map iframe {
+        height: 350px;
+    }
+}
+

@@ -1,0 +1,45 @@
+/* The container holding the image gallery */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 3 equal-width columns */
+    gap: 20px; /* Space between items */
+    padding: 20px;
+}
+
+/* Styling for each figure (image + caption pair) */
+.image-gallery figure {
+    display: flex;
+    flex-direction: column; /* Arrange image and caption vertically */
+    align-items: center;
+    margin: 0; /* Remove default margins */
+}
+
+/* Styling for the images */
+.image-gallery img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 16px; /* Optional: add rounded corners to the images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow to images */
+}
+
+/* Styling for the captions */
+.image-gallery figcaption {
+    margin-top: 10px; /* Add space between image and caption */
+    font-size: 14px;
+    color: #333; /* Dark grey color for the text */
+    text-align: center;
+    font-weight: bold; /* Make caption text bold */
+}
+
+/* Make the gallery responsive */
+@media (max-width: 768px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .image-gallery {
+        grid-template-columns: 1fr; /* 1 column on mobile devices */
+    }
+}
